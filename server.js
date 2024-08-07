@@ -3,6 +3,7 @@ dotenv.config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 const usersRouter = require('./controllers/users');
 const profilesRouter = require('./controllers/profiles');
@@ -15,6 +16,7 @@ mongoose.connection.on('connected', () => {
 });
 app.use(cors());
 app.use(express.json());
+app.use(morgan('dev'));
 
 app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
